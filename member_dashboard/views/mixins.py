@@ -1,9 +1,9 @@
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 
 from edc_constants.constants import MALE, FEMALE
-from member.wrappers import HouseholdMemberModelWrapper
 
 from member.constants import HEAD_OF_HOUSEHOLD
+from member.model_wrappers import HouseholdMemberModelWrapper
 from member.models import HouseholdMember
 
 
@@ -112,7 +112,7 @@ class HouseholdMemberViewMixin:
         Criteria: (1) must be in the current survey schedule,
             (2) have a current household log entry.
         """
-        if (household_member.survey_schedule_object.field_value ==
+        if (household_member.survey_schedule_object.field_value == 
                 self.survey_schedule_object.field_value):
             editable_in_view = True
         else:
