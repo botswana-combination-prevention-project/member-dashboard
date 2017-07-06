@@ -8,7 +8,7 @@ from edc_dashboard.views import ListboardView
 from household_dashboard.view_mixins import HouseholdQuerysetViewMixin
 from member.model_wrappers import HouseholdMemberModelWrapper
 from member.models import HouseholdMember
-from plot.view_mixins import PlotQuerysetViewMixin
+from plot_dashboard.view_mixins import PlotQuerysetViewMixin
 from survey import SurveyViewMixin, SurveyQuerysetViewMixin
 
 
