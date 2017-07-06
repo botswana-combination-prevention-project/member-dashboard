@@ -1,8 +1,8 @@
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 
 from edc_constants.constants import MALE, FEMALE
-from member.model_wrappers import HouseholdMemberModelWrapper
 from member.constants import HEAD_OF_HOUSEHOLD
+from member.model_wrappers import HouseholdMemberModelWrapper
 from member.models import HouseholdMember
 
 
