@@ -48,3 +48,4 @@ def listboard_urls():
                 listboard_view_class.as_view(), name=listboard_url_name),
         ])
     return urlpatterns
+urlpatterns = listboard_urls()
