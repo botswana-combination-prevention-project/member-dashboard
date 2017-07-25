@@ -11,7 +11,7 @@ class AnonymousListboardView(BaseListboardView):
     navbar_name = 'anonymous'
     navbar_item_selected = 'member'
     listboard_url_name = django_apps.get_app_config(
-        'member').anonymous_listboard_url_name
+        'member_dashboard').anonymous_listboard_url_name
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
