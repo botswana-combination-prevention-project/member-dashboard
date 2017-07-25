@@ -111,7 +111,7 @@ class HouseholdMemberViewMixin:
         Criteria: (1) must be in the current survey schedule,
             (2) have a current household log entry.
         """
-        if (household_member.survey_schedule_object.field_value == 
+        if (household_member.survey_schedule_object.field_value ==
                 self.survey_schedule_object.field_value):
             editable_in_view = True
         else:
