@@ -7,3 +7,4 @@ class AppConfig(DjangoAppConfig):
     listboard_url_name = 'member_dashboard:listboard_url'
     base_template_name = 'edc_base/base.html'
     url_namespace = 'member_dashboard'
+    anonymous_listboard_url_name = 'member_dashboard:anonymous_listboard_url'
