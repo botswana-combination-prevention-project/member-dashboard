@@ -18,7 +18,7 @@ class BaseListboardView(SurveyViewMixin, AppConfigViewMixin,
                         ListboardView):
 
     app_config_name = 'member'
-    navbar_item_selected = 'member'
+    navbar_item_selected = 'member_dashboard'
     navbar_name = 'default'
     model = HouseholdMember
     model_wrapper_class = HouseholdMemberModelWrapper
