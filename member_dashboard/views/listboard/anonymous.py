@@ -9,7 +9,7 @@ from .base_listboard import BaseListboardView
 class AnonymousListboardView(BaseListboardView):
 
     navbar_name = 'anonymous'
-    navbar_item_selected = 'member'
+    navbar_item_selected = 'member_dashboard'
     listboard_url_name = django_apps.get_app_config(
         'member_dashboard').anonymous_listboard_url_name
 

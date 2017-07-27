@@ -7,7 +7,6 @@ from edc_dashboard.views import ListboardView
 
 from household_dashboard.view_mixins import HouseholdQuerysetViewMixin
 from member.model_wrappers import HouseholdMemberModelWrapper
-from member.models import HouseholdMember
 from plot_dashboard.view_mixins import PlotQuerysetViewMixin
 from survey import SurveyViewMixin, SurveyQuerysetViewMixin
 
@@ -17,10 +16,10 @@ class BaseListboardView(SurveyViewMixin, AppConfigViewMixin,
                         PlotQuerysetViewMixin, SurveyQuerysetViewMixin,
                         ListboardView):
 
-    app_config_name = 'member'
+    app_config_name = 'member_dashboard'
     navbar_item_selected = 'member_dashboard'
     navbar_name = 'default'
-    model = HouseholdMember
+    model = 'member.householdmember'
     model_wrapper_class = HouseholdMemberModelWrapper
 
     plot_queryset_lookups = ['household_structure', 'household', 'plot']
