@@ -20,7 +20,7 @@ class BaseListboardView(SurveyViewMixin, AppConfigViewMixin,
     navbar_item_selected = 'member_dashboard'
     navbar_name = 'default'
     model = 'member.householdmember'
-    model_wrapper_class = HouseholdMemberModelWrapper
+    model_wrapper_cls = HouseholdMemberModelWrapper
 
     plot_queryset_lookups = ['household_structure', 'household', 'plot']
     household_queryset_lookups = ['household_structure', 'household']

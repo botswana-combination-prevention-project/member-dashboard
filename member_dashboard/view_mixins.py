@@ -8,7 +8,7 @@ from member.models import HouseholdMember
 
 class HouseholdMemberViewMixin:
 
-    household_member_model_wrapper_class = HouseholdMemberModelWrapper
+    household_member_model_wrapper_cls = HouseholdMemberModelWrapper
 
     def get_context_data(self, **kwargs):
         """Add household member(s) to the context.
@@ -40,7 +40,7 @@ class HouseholdMemberViewMixin:
         """Returns a wrapped household member or None.
         """
         if self.household_member:
-            return self.household_member_model_wrapper_class(self.household_member)
+            return self.household_member_model_wrapper_cls(self.household_member)
         return None
 
     @property
@@ -52,7 +52,7 @@ class HouseholdMemberViewMixin:
             survey_schedule=(
                 self.household_structure
                 .survey_schedule_object.field_value))
-        return self.household_member_model_wrapper_class(new_household_member)
+        return self.household_member_model_wrapper_cls(new_household_member)
 
     @property
     def head_of_household(self):
@@ -81,7 +81,7 @@ class HouseholdMemberViewMixin:
         """Returns a wrapped household member (HoH) or None.
         """
         if self.head_of_household:
-            return self.household_member_model_wrapper_class(
+            return self.household_member_model_wrapper_cls(
                 self.head_of_household)
         return None
 
@@ -101,7 +101,7 @@ class HouseholdMemberViewMixin:
         for obj in self.household_members:
             obj.editable_in_view = self.member_editable_in_view(obj)
             wrapped_objects.append(
-                self.household_member_model_wrapper_class(obj))
+                self.household_member_model_wrapper_cls(obj))
         return wrapped_objects
 
     def member_editable_in_view(self, household_member):
