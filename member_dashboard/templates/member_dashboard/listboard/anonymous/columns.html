@@ -1,0 +1,6 @@
+<td>{{ result.first_name }} {{ result.initials }} {{ result.age_in_years }} {{ result.get_gender_display }} </td>
+<td>
+{% if result.subject_identifier|length == 36 %}<i class="fa fa-envelope-o"></i>{%else %}{{ result.subject_identifier }}{% endif %}</td>
+<td>{{ result.survey_schedule_object.name }}</td>
+<td>{{ result.modified|date:"Y-m-d H:i" }}</td>
+<td>{{ result.hostname_created }}</td>

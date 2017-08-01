@@ -1,0 +1,11 @@
+{% for result in results %}
+  <tr>
+
+    <td>{{ forloop.counter }}</td>
+
+    {% include 'member_dashboard/listboard/buttons_column.html' %}
+    
+    {% include 'member_dashboard/listboard/columns.html' %}
+
+  </tr>
+{% endfor %}
