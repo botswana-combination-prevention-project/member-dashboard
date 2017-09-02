@@ -1,14 +1,13 @@
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-
 from edc_base.view_mixins import EdcBaseViewMixin
 from edc_dashboard.view_mixins import AppConfigViewMixin
 from edc_dashboard.views import ListboardView
-
 from household_dashboard.view_mixins import HouseholdQuerysetViewMixin
-from member.model_wrappers import HouseholdMemberModelWrapper
 from plot_dashboard.view_mixins import PlotQuerysetViewMixin
 from survey import SurveyViewMixin, SurveyQuerysetViewMixin
+
+from ...model_wrappers import HouseholdMemberModelWrapper
 
 
 class BaseListboardView(SurveyViewMixin, AppConfigViewMixin,

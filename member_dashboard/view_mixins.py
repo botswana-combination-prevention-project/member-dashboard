@@ -1,13 +1,14 @@
+from django.apps import apps as django_apps
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
-
 from edc_constants.constants import MALE, FEMALE
 from member.constants import HEAD_OF_HOUSEHOLD
-from member.model_wrappers import HouseholdMemberModelWrapper
-from member.models import HouseholdMember
+
+from .model_wrappers import HouseholdMemberModelWrapper
 
 
 class HouseholdMemberViewMixin:
 
+    household_member_model = 'member.householdmember'
     household_member_model_wrapper_cls = HouseholdMemberModelWrapper
 
     def get_context_data(self, **kwargs):
@@ -24,14 +25,18 @@ class HouseholdMemberViewMixin:
         return context
 
     @property
+    def household_member_model_cls(self):
+        return django_apps.get_model(self.household_member_model)
+
+    @property
     def household_member(self):
         """Returns a household member model instance or None.
         """
         try:
-            household_member = HouseholdMember.objects.get(
+            household_member = self.household_member_model_cls.objects.get(
                 subject_identifier=self.subject_identifier,
                 household_structure=self.household_structure)
-        except HouseholdMember.DoesNotExist:
+        except ObjectDoesNotExist:
             household_member = None
         return household_member
 
@@ -47,7 +52,7 @@ class HouseholdMemberViewMixin:
     def new_household_member(self):
         """Returns a model wrapper for an unsaved household member.
         """
-        new_household_member = HouseholdMember(
+        new_household_member = self.household_member_model_cls(
             household_structure=self.household_structure,
             survey_schedule=(
                 self.household_structure
@@ -89,7 +94,7 @@ class HouseholdMemberViewMixin:
     def household_members(self):
         """Returns a Queryset of household members for this household.
         """
-        return (HouseholdMember.objects.filter(
+        return (self.household_member_model_cls.objects.filter(
             household_structure__household__household_identifier=self.household_identifier)
             .order_by('first_name'))
 
