@@ -69,6 +69,13 @@ class AbsentMemberModelWrapper(MemberStatusModelWrapperMixin):
     next_url_attrs = ['household_identifier', 'survey_schedule']
 
 
+class MovedMemberModelWrapper(MemberStatusModelWrapperMixin):
+
+    model = 'member.movedmember'
+    querystring_attrs = ['survey_schedule', 'household_member']
+    next_url_attrs = ['household_identifier', 'survey_schedule']
+
+
 class UndecidedMemberModelWrapper(MemberStatusModelWrapperMixin):
 
     model = 'member.undecidedmember'
@@ -139,6 +146,7 @@ class HouseholdMemberModelWrapper(ModelWrapper):
     model = 'member.householdmember'
     absent_member_model = 'member.absentmember'
     undecided_member_model = 'member.undecidedmember'
+    moved_member_model = 'member.movedmember'
     refused_member_model = 'member.refusedmember'
     deceased_member_model = 'member.deceasedmember'
     htc_member_model = 'member.htcmember'
@@ -156,6 +164,10 @@ class HouseholdMemberModelWrapper(ModelWrapper):
     @property
     def absent_member_model_cls(self):
         return django_apps.get_model(self.absent_member_model)
+
+    @property
+    def moved_member_model_cls(self):
+        return django_apps.get_model(self.moved_member_model)
 
     @property
     def undecided_member_model_cls(self):
@@ -225,6 +237,11 @@ class HouseholdMemberModelWrapper(ModelWrapper):
     def new_absent_member(self):
         return AbsentMemberModelWrapper(
             self.absent_member_model_cls(household_member=self.object))
+
+    @property
+    def new_moved_member(self):
+        return MovedMemberModelWrapper(
+            self.moved_member_model_cls(household_member=self.object))
 
     @property
     def undecided_members(self):
